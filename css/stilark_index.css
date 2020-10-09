@@ -1,0 +1,32 @@
+body {
+	font-family: "Century Gothic", arial, sans-serif;
+	background-color: #ecf0f1;
+}
+
+
+#menneskeBtn {
+	margin-left: 110px;
+}
+
+.innpakning {
+	width: 980px;
+	margin: 75px auto;
+	font-size: 0;
+}
+
+p {
+	font-size: 18px;
+}
+
+button {
+	margin: 25px auto;
+	cursor: pointer;
+}
+
+a {
+	text-decoration: none;
+}
+
+h1 {
+	font-size: 28px;
+}

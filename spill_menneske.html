@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+	<meta charset="utf-8">
+
+	<title>Stein, saks, papir</title>
+
+	<link rel="stylesheet" href="css/stilark_menneske.css">
+
+</head>
+<body>
+
+	<center><h1>Spill stein, saks, papir mot hverandre</h1></center>
+
+<div class="innpakning">
+
+	<center><p>Her skal hver spiller velge enten stein, saks eller papir på de blå bildene. Når begge spillere har valgt et bilde, trykk på 'Vis resultat'-knappen for å se hvem som vant. Dersom dere ønsker å starte på nytt, trykk på knappen 'nullstill poeng' nederst på siden. Lykke til!</p></center>
+
+	<br>
+
+	<p id="spiller1"><b>Spiller 1</b></p>
+	<p id="spiller2"><b>Spiller 2</b></p>
+
+	<br>
+
+	<div class="spiller1bilder">
+
+		<img src="bilder/spiller_stein.png" width="100" height="100" alt="spiller stein" id="stein1">
+		<img src="bilder/spiller_saks.png" width="100" height="100" alt="spiller saks" id="saks1">
+		<img src="bilder/spiller_papir.png" width="100" height="100" alt="spiller papir" id="papir1">
+
+	</div>
+
+	<div class="spiller2bilder">
+
+		<img src="bilder/spiller_stein.png" width="100" height="100" alt="spiller stein" id="stein2">
+		<img src="bilder/spiller_saks.png" width="100" height="100" alt="spiller saks" id="saks2">
+		<img src="bilder/spiller_papir.png" width="100" height="100" alt="spiller papir" id="papir2">
+
+	</div>
+
+	<div class="spiller2valg">
+		<img src="bilder/maskin_ukjent.png" width="200" height="200" alt="maskinens valg" id="valgtBilde1">
+	</div>
+	
+	<div class="spiller2valg">
+		<img src="bilder/maskin_ukjent.png" width="200" height="200" alt="maskinens valg" id="valgtBilde2">
+	</div>
+
+	<br>
+
+	<center><button id="resultatBtn">Vis resultat</button></center>
+
+	<p id="spiller1Poeng"> <b>Spiller 1:</b> 0 </p>
+	<p id="spiller2Poeng"> <b>Spiller 2:</b> 0 </p>
+
+	<p id="info"></p>
+
+	<br>
+
+	<button id="nullstillBtn">Nullstill poeng</button>
+
+</div>
+
+  <script>
+
+
+
+   // Spiller 1 sin poengsum
+   var poengSpiller1 = 0;
+
+   // Spiller 2 sin poengsum
+   var poengSpiller2 = 0;
+
+
+   //Lager variabler for <p>-elementene
+   var spiller1PoengEl = document.getElementById("spiller1Poeng");
+   var spiller2PoengEl = document.getElementById("spiller2Poeng");
+   var infoEl = document.getElementById("info");
+
+   // Lager variabler for img-elementene
+   var stein1El = document.getElementById("stein1");
+   var saks1El = document.getElementById("saks1");
+   var papir1El = document.getElementById("papir1");
+   var stein2El = document.getElementById("stein2");
+   var saks2El = document.getElementById("saks2");
+   var papir2El = document.getElementById("papir2");
+   var valgtBilde1El = document.getElementById("valgtBilde1");
+   var valgtBilde2El = document.getElementById("valgtBilde2");
+
+   // Lager variabler for knappene
+   var resultatEl = document.getElementById("resultatBtn");
+   var nullstillEl = document.getElementById("nullstillBtn");
+
+
+   // Legger til click-hendelser på klikkelementene
+   stein1El.addEventListener("click", sjekkResultat1);
+   saks1El.addEventListener("click", sjekkResultat1);
+   papir1El.addEventListener("click", sjekkResultat1);
+   stein2El.addEventListener("click", sjekkResultat2);
+   saks2El.addEventListener("click", sjekkResultat2);
+   papir2El.addEventListener("click", sjekkResultat2);
+   resultatEl.addEventListener("click", visResultat);
+   nullstillEl.addEventListener("click", nullstill);
+
+
+   var spiller1Valg
+   var spiller2Valg
+
+   // Lagrer valget til spiller 1 i en variabel
+	var detValgteBilde1
+
+	// Lagrer valget til spiller 2 i en variabel
+	var detValgteBilde2
+
+   // Funksjonen som skal håndtere klikkene til spiller 1
+   function sjekkResultat1(event) {
+
+	// Finner først bildene som ble trykket på
+	spiller1Valg = event.target.id;
+
+	// Skriver valgte bilder til konsollen
+	console.log("Spiller 1 valgte: " + spiller1Valg);
+
+
+
+	// Gjør om spiller 1 sitt valg til riktig bildefil
+	if (spiller1Valg === "stein1") {
+		detValgteBilde1 = "stein";
+	}
+	else if (spiller1Valg === "saks1") {
+		detValgteBilde1 = "saks";
+	}
+	else if (spiller1Valg === "papir1") {
+		detValgteBilde1 = "papir";
+	}
+	}
+
+
+     // Funksjonen som skal håndtere klikkene til spiller 2
+	function sjekkResultat2(event) {
+
+	// Finner først bildene som ble trykket på
+	spiller2Valg = event.target.id;
+
+	// Skriver valgte bilder til konsollen
+	console.log("Spiller 2 valgte: " + spiller2Valg);
+
+
+	// Gjør om spiller 1 sitt valg til riktig bildefil
+	if (spiller2Valg === "stein2") {
+		detValgteBilde2 = "stein";
+	}
+	else if (spiller2Valg === "saks2") {
+		detValgteBilde2 = "saks";
+	}
+	else if (spiller2Valg === "papir2") {
+		detValgteBilde2 = "papir";
+	}
+	}
+
+	// Funksjonen som viser resultatet
+	function visResultat() {
+
+
+		//Endrer det røde bildet hos spiller 1
+		valgtBilde1El.src = "bilder/maskin_" + spiller1Valg + ".png";
+
+		//Endrer det røde bildet hos spiller 2
+		valgtBilde2El.src = "bilder/maskin_" + spiller2Valg + ".png";
+
+	// Sammenligner for å avgjøre vinner
+	if (detValgteBilde1 == detValgteBilde2) {
+		// Ingen vant, gjør ingenting
+		infoEl.innerHTML = "Uavgjort!";
+	}
+	else if (detValgteBilde1 == "stein") {
+		if (detValgteBilde2 == "saks") {
+			// Spiller 1 vant
+			poengSpiller1++;
+			infoEl.innerHTML = "Spiller 1 vant!";
+		}
+		else if (detValgteBilde2 == "papir") {
+			// Spiller 2 vant
+			poengSpiller2++;
+			infoEl.innerHTML = "Spiller 2 vant!";
+		}
+	}
+	else if (detValgteBilde1 == "saks") {
+		if (detValgteBilde2 == "papir") {
+			// Spiller 1 vant
+			poengSpiller1++;
+			infoEl.innerHTML = "Spiller 1 vant!";
+		}
+		else if (detValgteBilde2 == "stein") {
+			// Spiller 2 vant
+			poengSpiller2++;
+			infoEl.innerHTML = "Spiller 2 vant!";
+		}
+	}
+	else if (detValgteBilde1 == "papir") {
+		if (detValgteBilde2 == "stein") {
+			// Spiller 1 vant
+			poengSpiller1++;
+			infoEl.innerHTML = "Spiller 1 vant!";
+		}
+		else if (detValgteBilde2 == "saks") {
+			// Spiller 2 vant
+			poengSpiller2++;
+			infoEl.innerHTML = "Spiller 2 vant!";
+		}
+	}
+
+	console.log("Spiller 1: " + poengSpiller1);
+	console.log("Spiller 2: " + poengSpiller2);
+
+	// Endrer poengsummene i skjermbildet
+	spiller1PoengEl.innerHTML = "<b> Spiller 1: </b>" + poengSpiller1;
+	spiller2PoengEl.innerHTML = "<b> Spiller 2: </b>" + poengSpiller2;
+
+
+	}
+
+	function nullstill () {
+		poengSpiller1 = 0;
+		poengSpiller2 = 0;
+
+		// Endrer poengsummene i skjermbildet
+		spiller1PoengEl.innerHTML = "<b> Spiller 1: </b>" + poengSpiller1;
+		spiller2PoengEl.innerHTML = "<b> Spiller 2: </b>" + poengSpiller2;
+
+		infoEl.innerHTML = "";
+
+		console.log("spiller 1:" + poengSpiller1);
+		console.log("spiller 1:" + poengSpiller2);
+	}
+
+
+
+
+
+
+
+
+
+  </script>
+</body>
+</html>

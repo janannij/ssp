@@ -1,0 +1,56 @@
+body {
+	font-family: "Century Gothic", arial, sans-serif;
+	background-color: #ecf0f1;
+}
+
+img {
+	margin: 10px;
+}
+
+.spiller1bilder, .spiller2bilder {
+	display: inline;
+}
+
+.spiller2bilder {
+	margin-left: 225px;
+}
+
+#spiller1, #spiller2 {
+	display: inline;
+}
+
+#spiller2 {
+	margin-left: 525px;
+}
+
+.spiller1valg, .spiller2valg {
+	display: inline;
+}
+
+.spiller2valg {
+	margin-left: 175px;
+}
+
+
+
+.innpakning {
+	width: 980px;
+	margin: 75px auto;
+	font-size: 0;
+}
+
+#nullstillBtn {
+	float: left;
+}
+
+p {
+	font-size: 18px;
+}
+
+#stein1, #saks1, #papir1, #stein2, #saks2, #papir2, #resultatBtn, #nullstillBtn {
+	cursor: pointer;
+}
+
+h1 {
+	font-size: 28px;
+}

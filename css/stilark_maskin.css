@@ -1,0 +1,30 @@
+body {
+	font-family: "Century Gothic", arial, sans-serif;
+	background-color: #ecf0f1;
+}
+
+img {
+	margin: 10px;
+}
+
+#maskin {
+	margin-left: 110px;
+}
+
+.innpakning {
+	width: 980px;
+	margin: 75px auto;
+	font-size: 0;
+}
+
+p {
+	font-size: 18px;
+}
+
+#stein, #saks, #papir {
+	cursor: pointer;
+}
+
+h1 {
+	font-size: 28px;
+}

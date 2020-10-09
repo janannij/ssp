@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+	<meta charset="utf-8">
+
+	<title>Stein, saks, papir</title>
+
+	<link rel="stylesheet" href="css/stilark_maskin.css">
+
+</head>
+<body>
+
+	<center><h1>Spill stein, saks, papir mot maskinen</h1></center>
+
+<div class="innpakning">
+
+	<center><p id="forklaring"></p></center>
+
+	<img src="bilder/spiller_stein.png" width="200" height="200" alt="spiller stein" id="stein">
+	<img src="bilder/spiller_saks.png" width="200" height="200" alt="spiller saks" id="saks">
+	<img src="bilder/spiller_papir.png" width="200" height="200" alt="spiller papir" id="papir">
+	<img src="bilder/maskin_ukjent.png" width="200" height="200" alt="maskinens valg" id="maskin">
+
+	<p id="spillerPoeng"> <b>Spiller:</b> 0 </p>
+	<p id="maskinPoeng"> <b>Maskin:</b> 0 </p>
+
+	<p id="info"></p>
+
+</div>
+
+  <script>
+
+   // Antall poeng for å vinne
+   var VINNERSUM = 5;
+
+   // Spillerens poengsum
+   var spillerPoeng = 0;
+
+   // Maskinens poengsum
+   var maskinPoeng = 0;
+
+   //Lager variabler for de fire <p>-elementene
+   var spillerPoengEl = document.getElementById("spillerPoeng");
+   var maskinPoengEl = document.getElementById("maskinPoeng");
+   var infoEl = document.getElementById("info");
+   var forklaringEl = document.getElementById("forklaring");
+
+   // Lager variabler for de fire img-elementene
+   var steinEl = document.getElementById("stein");
+   var saksEl = document.getElementById("saks");
+   var papirEl = document.getElementById("papir");
+   var maskinEl = document.getElementById("maskin");
+
+   // Legger til click-hendelser på de tre spillerbildene
+   steinEl.addEventListener("click", sjekkResultat);
+   saksEl.addEventListener("click", sjekkResultat);
+   papirEl.addEventListener("click", sjekkResultat);
+
+   // Skriver ut "bruksanvisningen" i forklaring-elementet
+   forklaringEl.innerHTML = "Velg stein, saks eller papir. Førstemann til " + VINNERSUM + " poeng vinner spillet. ";
+
+
+   // Funksjonen som skal håndtere klikkene våre
+   function sjekkResultat (event) {
+	console.log("Du klikket på et bilde");
+
+	// Finner først bildet som ble trykket på
+	var spillerValg = event.target.id;
+
+	// Skriver valgt bilde til konsollen
+	console.log("Spiller valgte: " + spillerValg);
+
+	// Velger tilfeldig for maskinen
+	var tilfeldig = Math.floor(Math.random() * 3) + 1;
+
+	// Lagrer maskinens valg i en variabel
+	var maskinValg
+
+
+	// Gjør om maskinens valg til riktig bildefil
+	if (tilfeldig === 1) {
+		maskinValg = "stein";
+	}
+	else if (tilfeldig === 2) {
+		maskinValg = "saks";
+	}
+	else if (tilfeldig === 3) {
+		maskinValg = "papir";
+	}
+
+	//Skriver maskinens valg til konsollen
+	console.log("Maskinen valgte; " + maskinValg);
+
+	//Endrer maskinens bilde
+	maskinEl.src = "bilder/maskin_" + maskinValg + ".png";
+
+	// Sammenligner for å avgjøre vinner
+	if (spillerValg === maskinValg) {
+		// Ingen vant, gjør ingenting
+	}
+	else if (spillerValg === "stein") {
+		if (maskinValg === "saks") {
+			// Spiller vant
+			spillerPoeng++;
+		}
+		else if (maskinValg === "papir") {
+			// Maskin vant
+			maskinPoeng++;
+		}
+	}
+	else if (spillerValg === "saks") {
+		if (maskinValg === "papir") {
+			// Spiller vant
+			spillerPoeng++;
+		}
+		else if (maskinValg === "stein") {
+			// Maskin vant
+			maskinPoeng++;
+		}
+	}
+	else if (spillerValg === "papir") {
+		if (maskinValg === "stein") {
+			// Spiller vant
+			spillerPoeng++;
+		}
+		else if (maskinValg === "saks") {
+			// Maskin vant
+			maskinPoeng++;
+		}
+	}
+
+	// Endrer poengsummene i skjermbildet
+	spillerPoengEl.innerHTML = "<b> Spiller: </b>" + spillerPoeng;
+	maskinPoengEl.innerHTML = "<b> Maskin: </b>" + maskinPoeng;
+
+	// Sjekker om noen har vunnet
+	if (spillerPoeng === VINNERSUM || maskinPoeng === VINNERSUM) {
+		// Noen har vunnet
+		// Fjerner hendelser, slik at man ikke kan klikke på bildene lenger
+		steinEl.removeEventListener("click", sjekkResultat);
+		saksEl.removeEventListener("click", sjekkResultat);
+		papirEl.removeEventListener("click", sjekkResultat);
+
+		// Endrer musepekeren, slik at bildene virker deaktiverte
+		steinEl.style.cursor = "auto";
+		saksEl.style.cursor = "auto";
+		papirEl.style.cursor = "auto";
+
+		// Skriver ut en avslutningsbeskjed
+		if (spillerPoeng === VINNERSUM) {
+			infoEl.innerHTML = "Gratulerer, du vant!";
+		}
+		else {
+			infoEl.innerHTML = "Det ble dessverre ikke seier denne gangen..";
+		}
+	}
+
+	}
+
+
+
+  </script>
+</body>
+</html>
