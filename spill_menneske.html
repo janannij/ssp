@@ -14,7 +14,7 @@
 
 <div class="innpakning">
 
-	<center><p>Her skal hver spiller velge enten stein, saks eller papir på de blå bildene. Når begge spillere har valgt et bilde, trykk på 'Vis resultat'-knappen for å se hvem som vant. Dersom dere ønsker å starte på nytt, trykk på knappen 'nullstill poeng' nederst på siden. Lykke til!</p></center>
+	<center><p>Her skal hver spiller velge enten stein, saks eller papir på de blå bildene. Når begge spillere har valgt et bilde, trykk på 'Vis resultat'-knappen for å se hvem som vant. Dersom dere ønsker å starte på nytt, trykk på knappen 'nullstill poeng' nederst på siden. </p></center>
 
 	<br>
 
@@ -42,7 +42,7 @@
 	<div class="spiller2valg">
 		<img src="bilder/maskin_ukjent.png" width="200" height="200" alt="maskinens valg" id="valgtBilde1">
 	</div>
-	
+
 	<div class="spiller2valg">
 		<img src="bilder/maskin_ukjent.png" width="200" height="200" alt="maskinens valg" id="valgtBilde2">
 	</div>
@@ -116,52 +116,51 @@
    // Funksjonen som skal håndtere klikkene til spiller 1
    function sjekkResultat1(event) {
 
-	// Finner først bildene som ble trykket på
-	spiller1Valg = event.target.id;
+		// Finner først bildene som ble trykket på
+		spiller1Valg = event.target.id;
 
-	// Skriver valgte bilder til konsollen
-	console.log("Spiller 1 valgte: " + spiller1Valg);
+		// Skriver valgte bilder til konsollen
+		console.log("Spiller 1 valgte: " + spiller1Valg);
 
 
 
-	// Gjør om spiller 1 sitt valg til riktig bildefil
-	if (spiller1Valg === "stein1") {
-		detValgteBilde1 = "stein";
+		// Gjør om spiller 1 sitt valg til riktig bildefil
+		if (spiller1Valg === "stein1") {
+			detValgteBilde1 = "stein";
+		}
+		else if (spiller1Valg === "saks1") {
+			detValgteBilde1 = "saks";
+		}
+		else if (spiller1Valg === "papir1") {
+			detValgteBilde1 = "papir";
+		}
 	}
-	else if (spiller1Valg === "saks1") {
-		detValgteBilde1 = "saks";
-	}
-	else if (spiller1Valg === "papir1") {
-		detValgteBilde1 = "papir";
-	}
-	}
 
 
-     // Funksjonen som skal håndtere klikkene til spiller 2
+  // Funksjonen som skal håndtere klikkene til spiller 2
 	function sjekkResultat2(event) {
 
-	// Finner først bildene som ble trykket på
-	spiller2Valg = event.target.id;
+		// Finner først bildene som ble trykket på
+		spiller2Valg = event.target.id;
 
-	// Skriver valgte bilder til konsollen
-	console.log("Spiller 2 valgte: " + spiller2Valg);
+		// Skriver valgte bilder til konsollen
+		console.log("Spiller 2 valgte: " + spiller2Valg);
 
 
-	// Gjør om spiller 1 sitt valg til riktig bildefil
-	if (spiller2Valg === "stein2") {
-		detValgteBilde2 = "stein";
-	}
-	else if (spiller2Valg === "saks2") {
-		detValgteBilde2 = "saks";
-	}
-	else if (spiller2Valg === "papir2") {
-		detValgteBilde2 = "papir";
-	}
+		// Gjør om spiller 1 sitt valg til riktig bildefil
+		if (spiller2Valg === "stein2") {
+			detValgteBilde2 = "stein";
+		}
+		else if (spiller2Valg === "saks2") {
+			detValgteBilde2 = "saks";
+		}
+		else if (spiller2Valg === "papir2") {
+			detValgteBilde2 = "papir";
+		}
 	}
 
 	// Funksjonen som viser resultatet
 	function visResultat() {
-
 
 		//Endrer det røde bildet hos spiller 1
 		valgtBilde1El.src = "bilder/maskin_" + spiller1Valg + ".png";
@@ -169,54 +168,54 @@
 		//Endrer det røde bildet hos spiller 2
 		valgtBilde2El.src = "bilder/maskin_" + spiller2Valg + ".png";
 
-	// Sammenligner for å avgjøre vinner
-	if (detValgteBilde1 == detValgteBilde2) {
-		// Ingen vant, gjør ingenting
-		infoEl.innerHTML = "Uavgjort!";
-	}
-	else if (detValgteBilde1 == "stein") {
-		if (detValgteBilde2 == "saks") {
-			// Spiller 1 vant
-			poengSpiller1++;
-			infoEl.innerHTML = "Spiller 1 vant!";
+		// Sammenligner for å avgjøre vinner
+		if (detValgteBilde1 == detValgteBilde2) {
+			// Ingen vant, gjør ingenting
+			infoEl.innerHTML = "Uavgjort!";
 		}
-		else if (detValgteBilde2 == "papir") {
-			// Spiller 2 vant
-			poengSpiller2++;
-			infoEl.innerHTML = "Spiller 2 vant!";
+		else if (detValgteBilde1 == "stein") {
+			if (detValgteBilde2 == "saks") {
+				// Spiller 1 vant
+				poengSpiller1++;
+				infoEl.innerHTML = "Spiller 1 vant!";
+			}
+			else if (detValgteBilde2 == "papir") {
+				// Spiller 2 vant
+				poengSpiller2++;
+				infoEl.innerHTML = "Spiller 2 vant!";
+			}
 		}
-	}
-	else if (detValgteBilde1 == "saks") {
-		if (detValgteBilde2 == "papir") {
-			// Spiller 1 vant
-			poengSpiller1++;
-			infoEl.innerHTML = "Spiller 1 vant!";
+		else if (detValgteBilde1 == "saks") {
+			if (detValgteBilde2 == "papir") {
+				// Spiller 1 vant
+				poengSpiller1++;
+				infoEl.innerHTML = "Spiller 1 vant!";
+			}
+			else if (detValgteBilde2 == "stein") {
+				// Spiller 2 vant
+				poengSpiller2++;
+				infoEl.innerHTML = "Spiller 2 vant!";
+			}
 		}
-		else if (detValgteBilde2 == "stein") {
-			// Spiller 2 vant
-			poengSpiller2++;
-			infoEl.innerHTML = "Spiller 2 vant!";
+		else if (detValgteBilde1 == "papir") {
+			if (detValgteBilde2 == "stein") {
+				// Spiller 1 vant
+				poengSpiller1++;
+				infoEl.innerHTML = "Spiller 1 vant!";
+			}
+			else if (detValgteBilde2 == "saks") {
+				// Spiller 2 vant
+				poengSpiller2++;
+				infoEl.innerHTML = "Spiller 2 vant!";
+			}
 		}
-	}
-	else if (detValgteBilde1 == "papir") {
-		if (detValgteBilde2 == "stein") {
-			// Spiller 1 vant
-			poengSpiller1++;
-			infoEl.innerHTML = "Spiller 1 vant!";
-		}
-		else if (detValgteBilde2 == "saks") {
-			// Spiller 2 vant
-			poengSpiller2++;
-			infoEl.innerHTML = "Spiller 2 vant!";
-		}
-	}
 
-	console.log("Spiller 1: " + poengSpiller1);
-	console.log("Spiller 2: " + poengSpiller2);
+		console.log("Spiller 1: " + poengSpiller1);
+		console.log("Spiller 2: " + poengSpiller2);
 
-	// Endrer poengsummene i skjermbildet
-	spiller1PoengEl.innerHTML = "<b> Spiller 1: </b>" + poengSpiller1;
-	spiller2PoengEl.innerHTML = "<b> Spiller 2: </b>" + poengSpiller2;
+		// Endrer poengsummene i skjermbildet
+		spiller1PoengEl.innerHTML = "<b> Spiller 1: </b>" + poengSpiller1;
+		spiller2PoengEl.innerHTML = "<b> Spiller 2: </b>" + poengSpiller2;
 
 
 	}
@@ -234,13 +233,6 @@
 		console.log("spiller 1:" + poengSpiller1);
 		console.log("spiller 1:" + poengSpiller2);
 	}
-
-
-
-
-
-
-
 
 
   </script>
