@@ -62,102 +62,100 @@
 
 	   // Funksjonen som skal håndtere klikkene
 	   function sjekkResultat (event) {
-				console.log("Du klikket på et bilde");
+		console.log("Du klikket på et bilde");
 
-				// Finner først bildet som ble trykket på
-				var spillerValg = event.target.id;
+		// Finner først bildet som ble trykket på
+		var spillerValg = event.target.id;
 
-				// Skriver valgt bilde til konsollen
-				console.log("Spiller valgte: " + spillerValg);
+		// Skriver valgt bilde til konsollen
+		console.log("Spiller valgte: " + spillerValg);
 
-				// Velger tilfeldig for maskinen
-				var tilfeldig = Math.floor(Math.random() * 3) + 1;
+		// Velger tilfeldig for maskinen
+		var tilfeldig = Math.floor(Math.random() * 3) + 1;
 
-				// Lagrer maskinens valg i en variabel
-				var maskinValg
+		// Lagrer maskinens valg i en variabel
+		var maskinValg
 
 
-				// Gjør om maskinens valg til riktig bildefil
-				if (tilfeldig === 1) {
-					maskinValg = "stein";
-				}
-				else if (tilfeldig === 2) {
-					maskinValg = "saks";
-				}
-				else if (tilfeldig === 3) {
-					maskinValg = "papir";
-				}
-
-				//Skriver maskinens valg til konsollen
-				console.log("Maskinen valgte; " + maskinValg);
-
-				//Endrer maskinens bilde
-				maskinEl.src = "bilder/maskin_" + maskinValg + ".png";
-
-				// Sammenligner for å avgjøre vinner
-				if (spillerValg === maskinValg) {
-					// Ingen vant, gjør ingenting
-				}
-				else if (spillerValg === "stein") {
-					if (maskinValg === "saks") {
-						// Spiller vant
-						spillerPoeng++;
-					}
-					else if (maskinValg === "papir") {
-						// Maskin vant
-						maskinPoeng++;
-					}
-				}
-				else if (spillerValg === "saks") {
-					if (maskinValg === "papir") {
-						// Spiller vant
-						spillerPoeng++;
-					}
-					else if (maskinValg === "stein") {
-						// Maskin vant
-						maskinPoeng++;
-					}
-				}
-				else if (spillerValg === "papir") {
-					if (maskinValg === "stein") {
-						// Spiller vant
-						spillerPoeng++;
-					}
-					else if (maskinValg === "saks") {
-						// Maskin vant
-						maskinPoeng++;
-					}
-				}
-
-				// Endrer poengsummene i skjermbildet
-				spillerPoengEl.innerHTML = "<b> Spiller: </b>" + spillerPoeng;
-				maskinPoengEl.innerHTML = "<b> Maskin: </b>" + maskinPoeng;
-
-				// Sjekker om noen har vunnet
-				if (spillerPoeng === VINNERSUM || maskinPoeng === VINNERSUM) {
-					// Noen har vunnet
-					// Fjerner hendelser, slik at man ikke kan klikke på bildene lenger
-					steinEl.removeEventListener("click", sjekkResultat);
-					saksEl.removeEventListener("click", sjekkResultat);
-					papirEl.removeEventListener("click", sjekkResultat);
-
-					// Endrer musepekeren, slik at bildene virker deaktiverte
-					steinEl.style.cursor = "auto";
-					saksEl.style.cursor = "auto";
-					papirEl.style.cursor = "auto";
-
-					// Skriver ut en avslutningsbeskjed
-					if (spillerPoeng === VINNERSUM) {
-						infoEl.innerHTML = "Gratulerer, du vant!";
-					}
-					else {
-						infoEl.innerHTML = "Det ble dessverre ikke seier denne gangen..";
-					}
-				}
-
+		// Gjør om maskinens valg til riktig bildefil
+		if (tilfeldig === 1) {
+			maskinValg = "stein";
+		}
+		else if (tilfeldig === 2) {
+			maskinValg = "saks";
+		}
+		else if (tilfeldig === 3) {
+			maskinValg = "papir";
 		}
 
+		//Skriver maskinens valg til konsollen
+		console.log("Maskinen valgte; " + maskinValg);
 
+		//Endrer maskinens bilde
+		maskinEl.src = "bilder/maskin_" + maskinValg + ".png";
+
+		// Sammenligner for å avgjøre vinner
+		if (spillerValg === maskinValg) {
+			// Ingen vant, gjør ingenting
+		}
+		else if (spillerValg === "stein") {
+			if (maskinValg === "saks") {
+				// Spiller vant
+				spillerPoeng++;
+			}
+			else if (maskinValg === "papir") {
+				// Maskin vant
+				maskinPoeng++;
+			}
+		}
+		else if (spillerValg === "saks") {
+			if (maskinValg === "papir") {
+				// Spiller vant
+				spillerPoeng++;
+			}
+			else if (maskinValg === "stein") {
+				// Maskin vant
+				maskinPoeng++;
+			}
+		}
+		else if (spillerValg === "papir") {
+			if (maskinValg === "stein") {
+				// Spiller vant
+				spillerPoeng++;
+			}
+			else if (maskinValg === "saks") {
+				// Maskin vant
+				maskinPoeng++;
+			}
+		}
+
+		// Endrer poengsummene i skjermbildet
+		spillerPoengEl.innerHTML = "<b> Spiller: </b>" + spillerPoeng;
+		maskinPoengEl.innerHTML = "<b> Maskin: </b>" + maskinPoeng;
+
+		// Sjekker om noen har vunnet
+		if (spillerPoeng === VINNERSUM || maskinPoeng === VINNERSUM) {
+			// Noen har vunnet
+			// Fjerner hendelser, slik at man ikke kan klikke på bildene lenger
+			steinEl.removeEventListener("click", sjekkResultat);
+			saksEl.removeEventListener("click", sjekkResultat);
+			papirEl.removeEventListener("click", sjekkResultat);
+
+			// Endrer musepekeren, slik at bildene virker deaktiverte
+			steinEl.style.cursor = "auto";
+			saksEl.style.cursor = "auto";
+			papirEl.style.cursor = "auto";
+
+			// Skriver ut en avslutningsbeskjed
+			if (spillerPoeng === VINNERSUM) {
+				infoEl.innerHTML = "Gratulerer, du vant!";
+			}
+			else {
+				infoEl.innerHTML = "Det ble dessverre ikke seier denne gangen..";
+			}
+			}
+
+		}
 
   	</script>
 </body>
